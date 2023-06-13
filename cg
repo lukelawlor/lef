@@ -1,0 +1,5 @@
+#!/bin/sh
+#compile groff document with eqn and ms macros to pdf
+#usage: cg file
+target=pdf
+lef <$1 | tbl | pic | eqn -T$target | groff -U -ms -T$target

@@ -1,0 +1,64 @@
+#+TITLE: lef readme
+#+AUTHOR: Luke Lawlor
+#+EMAIL: lklawlor1@gmail.com
+#+DATE: June 12, 2023
+* lef
+For a while, I used =groff= to create documents with formatted math equations and lab reports for my physics class as a faster and more fun alternative to google docs. This repo contains a small set of tools I put together to make the experience more bearable. To use the tools, you need a *groff install* and a *C compiler* (by default =gcc= is assumed in =install.sh=) Below are descriptions of the programs and scripts in the repo.
+
+** lef
+This stands for Luke's Equation Formatter. It reads in standard input, formats it, and sends the output to standard output. When an asterisk symbol (*) is found at the start of a line of input, two things can happen:
+1. If there is a newline directly after the *, then each following line of input will be formatted to be preceded by .EQ and following .EN.
+2. If there is text after the *, the text is interpreted as a file name, and the file is included in the output
+
+*** Example Formatting
+
+This:
+
+#+BEGIN_SRC
+*
+line 1
+line 2
+line 3
+*
+#+END_SRC
+
+...becomes this:
+
+#+BEGIN_SRC
+.EQ
+line 1
+.EN
+.EQ
+line 2
+.EN
+.EQ
+line 3
+.EN
+#+END_SRC
+
+This:
+
+#+BEGIN_SRC
+*file.txt
+#+END_SRC
+
+...becomes this:
+
+#+BEGIN_SRC
+(insert contents of the file file.txt relative to the working directory here)
+#+END_SRC
+
+The include formatting is intended to be used for including groff macros. The equation formatting is intended to be used to show multiple equations in a vertical line. This is helpful when trying to show work for a problem.
+
+*** Usage
+
+A groff document should be piped into =lef= before being piped into =groff=. This is done for you when you use the =cg= script in this repo.
+
+** cg
+This stands for compile groff. It is a short shell script for compiling groff files with ms macros using =lef=, =tbl=, =pic=, and =eqn=.
+
+*** Usage
+The first argument to =cg= should be the groff document file. =cg= will then output the target file data to standard output.
+
+** install.sh & uninstall.sh
+These are simply install and uninstall scripts.
