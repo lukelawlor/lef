@@ -1,8 +1,7 @@
-#+TITLE: lef readme
+#+TITLE: lef toolkit
 #+AUTHOR: Luke Lawlor
 #+EMAIL: lklawlor1@gmail.com
 #+DATE: June 12, 2023
-* lef
 For a while, I used =groff= to create documents with formatted math equations and lab reports for my physics class as a faster and more fun alternative to google docs. This repo contains a small set of tools I put together to make the experience more bearable. To use the tools, you need a *groff install* and a *C compiler* (by default =gcc= is assumed in =install.sh=) Below are descriptions of the programs and scripts in the repo.
 
 ** lef
